@@ -50,7 +50,7 @@ class ExtendedSwitcherCommand(sublime_plugin.WindowCommand):
 					self.open_files.append(["Untitled", ''])
 
 		if self.check_for_sorting() == True:
-			self.sort_files()
+			self.sort_files(self.settings.get('case_insensitive', False))
  
 		self.window.show_quick_panel(self.open_files, self.tab_selected, False, -1) # show the file list
 
@@ -62,11 +62,11 @@ class ExtendedSwitcherCommand(sublime_plugin.WindowCommand):
 		return selected
 
 	# sort the files for display in alphabetical order
-	def sort_files(self):
+	def sort_files(self, case_insensitive):
 		open_files = self.open_files
 		open_views = []
 
-		open_files.sort()
+		open_files.sort(key=(None, lambda x: x[0].lower())[int(case_insensitive)])
 
 		for f in open_files:
 			f = f[0]

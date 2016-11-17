@@ -2,6 +2,9 @@
 	// sort the files 
 	"sort": true,
 
+	// sort case insensitive
+	"case_insensitive": false,
+
 	// Don't list current file?
 	"skip_current_file" : false,
 
